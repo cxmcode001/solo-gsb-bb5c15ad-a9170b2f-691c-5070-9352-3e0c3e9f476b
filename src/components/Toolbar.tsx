@@ -9,6 +9,7 @@ interface Props {
   onImport: (text: string) => void;
   onLoadDemo: () => void;
   onReset: () => void;
+  onPrefixPolicy: () => void;
 }
 
 export default function Toolbar(props: Props) {
@@ -33,6 +34,10 @@ export default function Toolbar(props: Props) {
         </button>
         <button className="btn" onClick={props.onRedo} disabled={!props.canRedo} title="Ctrl/Cmd+Shift+Z">
           ↪ 重做
+        </button>
+        <span className="divider" />
+        <button className="btn" onClick={props.onPrefixPolicy} title="对当前所有子网分配有序执行 prefix-list（不修改规划）">
+          前缀策略校验
         </button>
         <span className="divider" />
         <button className="btn" onClick={props.onExport}>
