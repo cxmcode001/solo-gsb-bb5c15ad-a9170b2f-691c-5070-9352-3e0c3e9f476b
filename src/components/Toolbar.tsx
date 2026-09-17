@@ -7,6 +7,7 @@ interface Props {
   onRedo: () => void;
   onExport: () => void;
   onImport: (text: string) => void;
+  onPrefixPolicy: () => void;
   onLoadDemo: () => void;
   onReset: () => void;
 }
@@ -48,6 +49,10 @@ export default function Toolbar(props: Props) {
           hidden
           onChange={(e) => void handleFile(e.target.files?.[0])}
         />
+        <span className="divider" />
+        <button className="btn" onClick={props.onPrefixPolicy} title="对当前全部子网分配执行有序 prefix-list（只读）">
+          🛡 前缀策略校验
+        </button>
         <span className="divider" />
         <button className="btn" onClick={props.onLoadDemo}>
           载入示例

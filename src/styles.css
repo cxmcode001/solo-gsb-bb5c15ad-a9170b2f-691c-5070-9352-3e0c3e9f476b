@@ -431,6 +431,21 @@ code,
   color: var(--red);
 }
 
+.badge.policy-permit {
+  background: rgba(52, 201, 142, 0.15);
+  color: var(--green);
+}
+
+.badge.policy-deny {
+  background: rgba(229, 96, 94, 0.18);
+  color: var(--red);
+}
+
+.badge.policy-unmatched {
+  background: rgba(232, 185, 63, 0.15);
+  color: var(--yellow);
+}
+
 /* ---- 表格 ---- */
 .table-wrap {
   overflow-x: auto;
@@ -461,6 +476,14 @@ tr.mig-failed td {
 }
 
 tr.mig-moved td {
+  background: rgba(232, 185, 63, 0.05);
+}
+
+tr.policy-deny td {
+  background: rgba(229, 96, 94, 0.06);
+}
+
+tr.policy-unmatched td {
   background: rgba(232, 185, 63, 0.05);
 }
 

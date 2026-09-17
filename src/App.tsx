@@ -23,6 +23,7 @@ import TreeView from './components/TreeView';
 import AllocationsPanel from './components/AllocationsPanel';
 import NewAllocationForm from './components/NewAllocationForm';
 import MigrationModal from './components/MigrationModal';
+import PrefixPolicyModal from './components/PrefixPolicyModal';
 
 interface MigrationRequest {
   title: string;
@@ -64,6 +65,7 @@ export default function App() {
   const [future, setFuture] = useState<Plan[]>([]);
   const [migration, setMigration] = useState<MigrationRequest | null>(null);
   const [resizeTarget, setResizeTarget] = useState<Allocation | null>(null);
+  const [policyOpen, setPolicyOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
   const showToast = useCallback((msg: string) => {
@@ -293,6 +295,7 @@ export default function App() {
         onRedo={redo}
         onExport={exportPlan}
         onImport={importPlan}
+        onPrefixPolicy={() => setPolicyOpen(true)}
         onLoadDemo={loadDemo}
         onReset={resetPlan}
       />
@@ -361,6 +364,13 @@ export default function App() {
             showToast('迁移已整批原子应用');
           }}
           onCancel={() => setMigration(null)}
+        />
+      )}
+
+      {policyOpen && (
+        <PrefixPolicyModal
+          allocations={plan.allocations.filter((a) => a.kind === 'subnet')}
+          onClose={() => setPolicyOpen(false)}
         />
       )}
     </div>
